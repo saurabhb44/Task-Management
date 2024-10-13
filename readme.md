@@ -35,6 +35,7 @@ This project is a **Task Management System** implemented as part of a senior sof
 2. **Real-Time Notifications**:
    - Real-time notifications triggered when tasks are created or updated.
    - Pub/Sub mechanism to broadcast task changes and notify users.
+   - Handled retries, idempotency, and error logging.
    
 3. **Scheduled Notifications**:
    - Daily notification system for tasks due the next day.
