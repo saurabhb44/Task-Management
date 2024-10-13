@@ -202,7 +202,7 @@ This project is a **Task Management System** implemented as part of a senior sof
 ## Conclusion
 This project demonstrates the implementation of a Task Management System with real-time updates, advanced querying, scheduled notifications, and audit logging. The architecture and code quality follow industry standards for maintainability and scalability.
 ```bash
-This README is designed to showcase your implementation, highlighting how it meets the criteria of the assignment.
+This README is designed to showcase the implementation, highlighting how it meets the criteria of the assignment.
 ```
 
 ## Extra
