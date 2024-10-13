@@ -179,7 +179,8 @@ This project is a **Task Management System** implemented as part of a senior sof
     npm run dev
     ```
 5. Use postmant to call APIs
-   - I have created a postman collection to be imported from here- 
+   - I have created a postman collection to be imported from here- [Postman Collection](Task%20management%20API.postman_collection.json)
+
 
 ## Meeting of Acceptance Criteria
 
