@@ -6,9 +6,9 @@ export class TaskNotificationScheduler {
   cron (interval: string) {
     cron.schedule(interval, async () => {
       const result = await pool.query(
-        `SELECT * FROM tasks WHERE due_date = NOW() + INTERVAL '1 day'`
+        `SELECT * FROM tasks WHERE DATE(due_date) = DATE(NOW() + INTERVAL '1 day')`
       );
-    
+
       result.rows.forEach(async (task) => {
         pool.query(
           `INSERT INTO notifications (id, user_id, task_id, message) VALUES ($1, $2, $3, $4)`,
