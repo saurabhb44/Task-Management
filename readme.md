@@ -166,7 +166,7 @@ This project is a **Task Management System** implemented as part of a senior sof
 1. Clone the repository
     ```bash
     git clone git@github.com:saurabhb44/Task-Management.git
-    cd task-management-system
+    cd Task-Management
     ```
 2. Install the dependencies:
    ```bash

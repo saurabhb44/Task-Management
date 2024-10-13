@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "e4317d2f-1ee4-4a89-bc39-205d0421b788",
+		"name": "Task management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23562739"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/tasks/query",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmQ0M2QyZjAtN2IwOC00NTViLWE0MmUtOWZhODZmNjRmYmU3IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE3MjkyMzkwMjJ9.YNWWcU4ZkUAudGfnQ93cac01sFtByqm-vOjxHH7ohL0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/tasks/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks",
+						"query"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "awesome",
+							"disabled": true
+						},
+						{
+							"key": "priority",
+							"value": "low",
+							"disabled": true
+						},
+						{
+							"key": "project_id",
+							"value": "f91e86d0-14d2-4ccd-ae44-5c4945e4ab3e",
+							"disabled": true
+						},
+						{
+							"key": "assigned_user_id",
+							"value": "6d43d2f0-7b08-455b-a42e-9fa86f64fbe6",
+							"disabled": true
+						},
+						{
+							"key": "days",
+							"value": "9",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "in_progress",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/tasks/:id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmQ0M2QyZjAtN2IwOC00NTViLWE0MmUtOWZhODZmNjRmYmU3IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE3MjkyMzkwMjJ9.YNWWcU4ZkUAudGfnQ93cac01sFtByqm-vOjxHH7ohL0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/tasks/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "e1b87ec2-1fdd-4c11-8f6b-eece416de747"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/tasks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmQ0M2QyZjAtN2IwOC00NTViLWE0MmUtOWZhODZmNjRmYmU3IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE3MjkyMzkwMjJ9.YNWWcU4ZkUAudGfnQ93cac01sFtByqm-vOjxHH7ohL0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Task2\",\n    \"description\": \"Task 2\",\n    \"status\": \"pending\",\n    \"priority\": \"high\",\n    \"project_id\": \"f91e86d0-14d2-4ccd-ae44-5c4945e4ab3e\",\n    \"assigned_user_id\": \"6d43d2f0-7b08-455b-a42e-9fa86f64fbe6\",\n    \"due_date\": \"2024-10-21\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
