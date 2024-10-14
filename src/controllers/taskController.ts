@@ -1,9 +1,20 @@
 import { Request, Response } from 'express';
 import { TaskManager } from '../services/tasks/taskManager';
+import { validateCreateTaskSchema } from '../validations/createTaskValidation';
 
 const taskManager = new TaskManager();
 
 export const createTask = async (req: Request, res: Response) => {
+    // Request body validation
+    validateCreateTaskSchema(req.body);
+    if (validateCreateTaskSchema.errors) {
+        console.log(JSON.stringify(validateCreateTaskSchema.errors));
+        res.status(400).json({
+            message: validateCreateTaskSchema.errors[0].message,
+            status_code: 400,
+        });
+        return;
+    }
     const { title, description, status, priority, project_id, assigned_user_id, due_date } = req.body;
     try {
         const params = {
