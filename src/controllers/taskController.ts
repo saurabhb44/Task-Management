@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { TaskManager } from '../services/tasks/taskManager';
 import { validateCreateTaskSchema } from '../validations/createTaskValidation';
 import { validateUpdateTaskSchema } from '../validations/updateTaskValidation';
+import { validateQueryTaskSchema } from '../validations/queryTaskValidation';
 
 const taskManager = new TaskManager();
 
@@ -19,13 +20,13 @@ export const createTask = async (req: Request, res: Response) => {
     const { title, description, status, priority, project_id, assigned_user_id, due_date } = req.body;
     try {
         const params = {
-            title, 
-            description, 
-            status, 
-            priority, 
-            project_id, 
+            title,
+            description,
+            status,
+            priority,
+            project_id,
             assigned_user_id,
-            due_date 
+            due_date
         }
         const result = await taskManager.createTask(params);
         res.status(201).json(result);
@@ -66,7 +67,7 @@ export const updateTask = async (req: Request, res: Response) => {
         const params = {
             status: updatesStatus, priority: updatedPriority, assigned_user_id: updatedAssignedUser
         }
-        const result = await taskManager.updateTask(oldTask, params, id, req.userId);        
+        const result = await taskManager.updateTask(oldTask, params, id, req.userId);
         res.status(200).json(result);
     } catch (err) {
         console.error(err);
@@ -75,6 +76,16 @@ export const updateTask = async (req: Request, res: Response) => {
 };
 
 export const queryTasks = async (req: Request, res: Response) => {
+    // Request query validation
+    validateQueryTaskSchema(req.query);
+    if (validateQueryTaskSchema.errors) {
+        console.log(JSON.stringify(validateQueryTaskSchema.errors));
+        res.status(400).json({
+            message: validateQueryTaskSchema.errors[0].message,
+            status_code: 400,
+        });
+        return;
+    }
     const { project_id, assigned_user_id, status, priority, days, keyword } = req.query;
     const params = {
         project_id, assigned_user_id, status, priority, days, keyword
