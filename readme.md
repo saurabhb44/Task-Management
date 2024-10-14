@@ -31,6 +31,7 @@ This project is a **Task Management System** implemented as part of a senior sof
    - Create and update tasks with project and user assignment.
    - Query tasks based on multiple parameters such as project, user, status, priority, and task comments.
    - Handle complex queries with multi-table joins for efficiency.
+   - Proper request body validations.
 
 2. **Real-Time Notifications**:
    - Real-time notifications triggered when tasks are created or updated.
@@ -76,6 +77,7 @@ This project is a **Task Management System** implemented as part of a senior sof
 │   ├── middleware          # Authorization middleware
 │   ├── services            # Core business logic
 │   ├── utils               # Utilities (e.g., database, Redis)
+│   ├── validations         # Validations for request body schema
 │   ├── server.ts           # Entry point for the server
 │   ├── test                # Unit test
 │   ├──── services          # Test case for business logic
