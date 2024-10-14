@@ -27,11 +27,16 @@ export const updateTask = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { status, priority, assigned_user_id } = req.body;
 
+    if (!status && !priority && !assigned_user_id) {
+        res.status(400).send('Nothing to update');
+        return;
+    }
+
     try {
         const task = await taskManager.getTask(id);
 
         if (task.rowCount === 0) {
-            res.status(404).send('Task not Found');
+            res.status(404).send('Task not found');
             return;
         }
         const oldTask = task.rows[0];
