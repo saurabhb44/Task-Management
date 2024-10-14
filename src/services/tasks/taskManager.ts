@@ -48,7 +48,7 @@ export class TaskManager {
     async updateTask(oldTask, params, taskId: string, userId: string) {
         const result = await this.generalQuery(
             `UPDATE tasks SET status = $1, priority = $2, assigned_user_id = $3 WHERE id = $4 RETURNING *`,
-            [params.status, params.priority, params.updatedAssignedUser, taskId]
+            [params.status, params.priority, params.assigned_user_id, taskId]
         );
 
         logTaskUpdate(taskId, oldTask.status, params.status, userId);

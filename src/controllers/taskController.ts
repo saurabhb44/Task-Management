@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { TaskManager } from '../services/tasks/taskManager';
 import { validateCreateTaskSchema } from '../validations/createTaskValidation';
+import { validateUpdateTaskSchema } from '../validations/updateTaskValidation';
 
 const taskManager = new TaskManager();
 
@@ -35,13 +36,18 @@ export const createTask = async (req: Request, res: Response) => {
 };
 
 export const updateTask = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { status, priority, assigned_user_id } = req.body;
-
-    if (!status && !priority && !assigned_user_id) {
-        res.status(400).send('Nothing to update');
+    // Request body validation
+    validateUpdateTaskSchema(req.body);
+    if (validateUpdateTaskSchema.errors) {
+        console.log(JSON.stringify(validateUpdateTaskSchema.errors));
+        res.status(400).json({
+            message: validateUpdateTaskSchema.errors[0].message,
+            status_code: 400,
+        });
         return;
     }
+    const { id } = req.params;
+    const { status, priority, assigned_user_id } = req.body;
 
     try {
         const task = await taskManager.getTask(id);
@@ -54,9 +60,11 @@ export const updateTask = async (req: Request, res: Response) => {
 
         // If no user is sent in request then assigned user doesn't change
         const updatedAssignedUser = assigned_user_id || oldTask.assigned_user_id;
+        const updatesStatus = status || oldTask.status;
+        const updatedPriority = priority || oldTask.priority;
 
         const params = {
-            status, priority, updatedAssignedUser
+            status: updatesStatus, priority: updatedPriority, assigned_user_id: updatedAssignedUser
         }
         const result = await taskManager.updateTask(oldTask, params, id, req.userId);        
         res.status(200).json(result);
